@@ -6,6 +6,8 @@ import com.epsi.MSPR.repository.ProductRepository;
 import com.epsi.MSPR.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
+        System.out.println("Retrieved products: " + productRepository.findAll());
+
         return productRepository.findAll();
+
     }
 
     @Override
@@ -36,8 +41,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Long id) {
+    public boolean deleteProduct(Long id) {
         productRepository.deleteById(id);
+        return false;
     }
 
     @Override

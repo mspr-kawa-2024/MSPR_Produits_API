@@ -1,98 +1,100 @@
 package com.epsi.MSPR;
 
-import com.epsi.MSPR.dto.ProductDTO;
+import com.epsi.MSPR.controller.ProductController;
 import com.epsi.MSPR.model.Product;
 import com.epsi.MSPR.service.ProductService;
-import com.epsi.MSPR.mapper.MapperService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.mockito.Mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-class ProductControllerTest {
+public class ProductControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
+    @Mock
     private ProductService productService;
 
-    @Autowired
-    private MapperService mapperService;
+    @InjectMocks
+    private ProductController productController;
 
-
-
-    @Test
-    void testGetAllProducts() throws Exception {
-        // Créer des produits de test
-        Product product1 = new Product(1L, "Product 1", 10.0, "miam");
-        Product product2 = new Product(2L, "Product 2", 20.0, "miam");
-        when(productService.getAllProducts()).thenReturn(List.of(product1, product2));
-
-        mockMvc.perform(get("/api/products"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-
-        ;
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testGetProductById() throws Exception {
-        // Créer un produit de test
-        Product product = new Product(1L, "Test Product", 10.0, "miam");
-        when(productService.getProductById(1L)).thenReturn(java.util.Optional.of(product));
+    public void testGetAllProducts() {
+        List<Product> products = Arrays.asList(
+                new Product(1L, "Product1", 10.0, "Description1"),
+                new Product(2L, "Product2", 20.0, "Description2")
+        );
 
-        mockMvc.perform(get("/api/products/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        when(productService.getAllProducts()).thenReturn(products);
 
-        ;
+        ResponseEntity<List<Product>> response = productController.getAllProducts();
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(products, response.getBody());
     }
 
     @Test
-    void testCreateProduct() throws Exception {
-        // Créer un DTO de test
-        ProductDTO productDTO = new ProductDTO(null, "Test Product", 10.0, "miam");
+    public void testGetProductById() {
+        Product product = new Product(1L, "Product1", 10.0, "Description1");
 
-        mockMvc.perform(post("/api/products")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\": \"Test Product\", \"price\": 10.0}"))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        ;
+        when(productService.getProductById(anyLong())).thenReturn(Optional.of(product));
+
+        ResponseEntity<Product> response = productController.getProductById(1L);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(product, response.getBody());
     }
 
     @Test
-    void testUpdateProduct() throws Exception {
-        // Créer un produit de test
-        Product product = new Product(1L, "Test Product", 10.0, "miam");
-        when(productService.getProductById(1L)).thenReturn(java.util.Optional.of(product));
+    public void testGetProductByIdNotFound() {
+        when(productService.getProductById(anyLong())).thenReturn(Optional.empty());
 
-        mockMvc.perform(put("/api/products/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\": \"Updated Product\", \"price\": 20.0}"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        // Ajouter d'autres vérifications si nécessaire
-        ;
+        ResponseEntity<Product> response = productController.getProductById(1L);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
-    void testDeleteProduct() throws Exception {
-        mockMvc.perform(delete("/api/products/1"))
-                .andExpect(status().isNoContent())
-        // Ajouter d'autres vérifications si nécessaire
-        ;
+    public void testCreateProduct() {
+        Product product = new Product(null, "Product1", 10.0, "Description1");
+        Product createdProduct = new Product(1L, "Product1", 10.0, "Description1");
+
+        when(productService.createProduct(any(Product.class))).thenReturn(createdProduct);
+
+        ResponseEntity<Product> response = productController.createProduct(product);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(createdProduct, response.getBody());
+    }
+
+    @Test
+    public void testUpdateProduct() {
+        Product product = new Product(1L, "Product1", 10.0, "Description1");
+        Product updatedProduct = new Product(1L, "UpdatedProduct", 15.0, "UpdatedDescription");
+
+        when(productService.updateProduct(anyLong(), any(Product.class))).thenReturn(updatedProduct);
+
+        ResponseEntity<Product> response = productController.updateProduct(1L, product);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(updatedProduct, response.getBody());
+    }
+
+    @Test
+    public void testDeleteProduct() {
+        when(productService.deleteProduct(anyLong())).thenReturn(true);
+
+        ResponseEntity<Void> response = productController.deleteProduct(1L);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }
-

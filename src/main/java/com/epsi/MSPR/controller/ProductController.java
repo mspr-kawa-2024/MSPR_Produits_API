@@ -2,102 +2,97 @@ package com.epsi.MSPR.controller;
 
 import com.epsi.MSPR.model.Product;
 import com.epsi.MSPR.service.ProductService;
-import com.epsi.MSPR.dto.ProductDTO;
-import com.epsi.MSPR.mapper.MapperService;
-import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.validation.FieldError;
+import java.util.Optional;
 
-
-@Validated
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
-    @Autowired
-    private final ProductService productService;
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private final MapperService mapperService;
+    private ProductService productService;
 
-    public ProductController(ProductService productService, MapperService mapperService) {
-        this.productService = productService;
-        this.mapperService = mapperService;
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Product>> getAllProducts() {
+        logger.debug("Getting all products");
+        try {
+            List<Product> products = productService.getAllProducts();
+            logger.debug("Products retrieved: {}", products);
+            if (products.isEmpty()) {
+                logger.debug("No products found");
+            } else {
+                for (Product product : products) {
+                    logger.debug("Product: {}", product);
+                }
+            }
+            return ResponseEntity.ok(products);
+        } catch (Exception e) {
+            logger.error("Error getting all products", e);
+            return ResponseEntity.status(500).build();
+        }
     }
 
-
-    @GetMapping
-    public List<ProductDTO> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return products.stream()
-                .map(mapperService::convertToDTO)
-                .collect(Collectors.toList());
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        logger.debug("Getting product with ID: {}", id);
+        try {
+            Optional<Product> product = productService.getProductById(id);
+            return product.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+        } catch (Exception e) {
+            logger.error("Error getting product by ID", e);
+            return ResponseEntity.status(500).build();
+        }
     }
 
-    @GetMapping("/{id}")
-    public ProductDTO getProductById(@PathVariable Long id) {
-        Product product = productService.getProductById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
-        return mapperService.convertToDTO(product);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        logger.debug("Creating product: {}", product);
+        try {
+            Product createdProduct = productService.createProduct(product);
+            return ResponseEntity.status(201).body(createdProduct);
+        } catch (Exception e) {
+            logger.error("Error creating product", e);
+            return ResponseEntity.status(500).build();
+        }
     }
 
-    @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
-        Product product = mapperService.convertToEntity(productDTO);
-        productService.validateProduct(product);
-        Product createdProduct = productService.createProduct(product);
-        ProductDTO createdProductDTO = mapperService.convertToDTO(createdProduct);
-        return new ResponseEntity<>(createdProductDTO, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
-        Product existingProduct = productService.getProductById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
-
-        // Mettre à jour les propriétés du produit existant avec les données du DTO
-        existingProduct.setName(productDTO.getName());
-        existingProduct.setPrice(productDTO.getPrice());
-
-        productService.validateProduct(existingProduct);
-
-        Product updatedProduct = productService.updateProduct(id, existingProduct);
-        ProductDTO updatedProductDTO = mapperService.convertToDTO(updatedProduct); // Convertir Product en ProductDTO
-        return new ResponseEntity<>(updatedProductDTO, HttpStatus.OK);
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        logger.debug("Updating product with ID: {}", id);
+        try {
+            Optional<Product> updatedProduct = Optional.ofNullable(productService.updateProduct(id, product));
+            return updatedProduct.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+        } catch (Exception e) {
+            logger.error("Error updating product", e);
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        BindingResult result = ex.getBindingResult();
-        String errorMessage = result.getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
-                .collect(Collectors.joining(", "));
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        return new ResponseEntity<>("An unexpected error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        logger.debug("Deleting product with ID: {}", id);
+        try {
+            if (productService.deleteProduct(id)) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            logger.error("Error deleting product", e);
+            return ResponseEntity.status(500).build();
+        }
     }
 }
 

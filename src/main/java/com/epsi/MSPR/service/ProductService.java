@@ -10,7 +10,7 @@ public interface ProductService {
     Optional<Product> getProductById(Long id);
     Product createProduct(Product product);
     Product updateProduct(Long id, Product product);
-    void deleteProduct(Long id);
+    boolean deleteProduct(Long id);
 
     void validateProduct(Product product);
 }
