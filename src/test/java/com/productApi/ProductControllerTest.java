@@ -1,8 +1,8 @@
-package com.epsi.MSPR;
+package com.productApi;
 
-import com.epsi.MSPR.controller.ProductController;
-import com.epsi.MSPR.model.Product;
-import com.epsi.MSPR.service.ProductService;
+import com.productApi.controller.ProductController;
+import com.productApi.model.Product;
+import com.productApi.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

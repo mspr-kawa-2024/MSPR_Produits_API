@@ -1,23 +1,23 @@
-package com.epsi.MSPR;
+package com.productApi;
 
 
-import com.epsi.MSPR.model.Product;
+import com.productApi.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.epsi.MSPR.model.Product;
+import com.productApi.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import com.epsi.MSPR.repository.ProductRepository;
-import com.epsi.MSPR.service.imp.ProductServiceImpl;
+
+import com.productApi.service.imp.ProductServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {

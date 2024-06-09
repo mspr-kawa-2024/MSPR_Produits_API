@@ -1,9 +1,9 @@
-package com.epsi.MSPR;
+package com.productApi;
 
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import com.epsi.MSPR.config.ResourceNotFoundException;
+import com.productApi.config.ResourceNotFoundException;
 
 class ResourceNotFoundExceptionTest {
 

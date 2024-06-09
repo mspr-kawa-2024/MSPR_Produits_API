@@ -1,6 +1,6 @@
-package com.epsi.MSPR;
+package com.productApi;
 
-import com.epsi.MSPR.model.Product;
+import com.productApi.model.Product;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

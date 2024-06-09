@@ -1,13 +1,12 @@
-package com.epsi.MSPR;
+package com.productApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.epsi.MSPR"})
-public class MsprApplication {
+@SpringBootApplication
+public class ProductApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsprApplication.class, args);
+		SpringApplication.run(ProductApplication.class, args);
 	}
-
 }
