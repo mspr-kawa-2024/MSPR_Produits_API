@@ -1,9 +1,11 @@
 package com.epsi.MSPR.controller;
 
+import com.epsi.MSPR.exeption.BadRequestException;
 import com.epsi.MSPR.model.Product;
 import com.epsi.MSPR.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,10 +65,14 @@ public class ProductController {
         logger.debug("Creating product: {}", product);
         try {
             Product createdProduct = productService.createProduct(product);
+            rabbitTemplate.convertAndSend("productExchange", "productRoutingKey", createdProduct);
             return ResponseEntity.status(201).body(createdProduct);
         } catch (Exception e) {
             logger.error("Error creating product", e);
+            rabbitTemplate.convertAndSend("productExchange", "productRoutingKey", "Failed to create product: " + e.getMessage());
+
             return ResponseEntity.status(500).build();
+
         }
     }
 
@@ -72,6 +81,7 @@ public class ProductController {
         logger.debug("Updating product with ID: {}", id);
         try {
             Optional<Product> updatedProduct = Optional.ofNullable(productService.updateProduct(id, product));
+            rabbitTemplate.convertAndSend("productExchange", "productRoutingKey", updatedProduct);
             return updatedProduct.map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.notFound().build());
         } catch (Exception e) {
@@ -85,6 +95,7 @@ public class ProductController {
         logger.debug("Deleting product with ID: {}", id);
         try {
             if (productService.deleteProduct(id)) {
+                rabbitTemplate.convertAndSend("productExchange", "productRoutingKey", "Product with ID " + id + " has been deleted.");
                 return ResponseEntity.noContent().build();
             } else {
                 return ResponseEntity.notFound().build();

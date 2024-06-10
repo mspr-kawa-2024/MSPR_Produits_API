@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.epsi.MSPR.repository.ProductRepository;
@@ -15,6 +17,21 @@ class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Test
+    public void testSaveAndFindProduct() {
+        Product product = new Product();
+        product.setName("Test Product");
+        product.setDescription("Test Description");
+        product.setPrice(10.0);
+
+        Product savedProduct = productRepository.save(product);
+        Product foundProduct = productRepository.findById(savedProduct.getId()).orElse(null);
+
+        assertThat(foundProduct).isNotNull();
+        assertThat(foundProduct.getName()).isEqualTo("Test Product");
+    }
+
 
     @Test
     void testSaveProduct() {

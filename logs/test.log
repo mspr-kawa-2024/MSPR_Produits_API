@@ -1,0 +1,128 @@
+13:33:45.183 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+13:33:45.185 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+13:33:45.185 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:33:45.233 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+13:33:45.274 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+13:33:45.394 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a0095ef
+13:33:45.396 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+13:33:48.111 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+13:35:48.688 [http-nio-8081-exec-2] INFO  [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:35:49.555 [Thread-17] INFO  Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
+13:35:49.572 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:35:49.575 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+13:35:50.735 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+13:35:50.735 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+13:35:50.735 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:35:50.758 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+13:35:50.771 [restartedMain] INFO  HikariDataSource - HikariPool-2 - Starting...
+13:35:50.803 [restartedMain] INFO  HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@635bf86f
+13:35:50.804 [restartedMain] INFO  HikariDataSource - HikariPool-2 - Start completed.
+13:35:52.821 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+13:41:34.935 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-2 - Shutdown initiated...
+13:41:34.936 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-2 - Shutdown completed.
+13:51:50.085 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+13:51:50.087 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+13:51:50.087 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:51:50.133 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+13:51:50.170 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+13:51:50.311 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f5987a2
+13:51:50.312 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+13:51:53.212 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+13:52:45.461 [Thread-17] INFO  Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
+13:52:45.498 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:52:45.505 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+13:53:00.886 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+13:53:00.889 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+13:53:00.889 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:53:00.949 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+13:53:00.983 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+13:53:01.129 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@206782fe
+13:53:01.137 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+13:53:04.554 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+13:54:50.834 [Thread-17] INFO  Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
+13:54:50.860 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:54:50.864 [Thread-17] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+13:54:52.148 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+13:54:52.148 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+13:54:52.148 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+13:54:52.168 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+13:54:52.179 [restartedMain] INFO  HikariDataSource - HikariPool-2 - Starting...
+13:54:52.207 [restartedMain] INFO  HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@6d353eaf
+13:54:52.208 [restartedMain] INFO  HikariDataSource - HikariPool-2 - Start completed.
+13:54:54.590 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:01:40.459 [Thread-19] INFO  Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
+14:01:40.468 [Thread-19] INFO  HikariDataSource - HikariPool-2 - Shutdown initiated...
+14:01:40.472 [Thread-19] INFO  HikariDataSource - HikariPool-2 - Shutdown completed.
+14:01:42.970 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:01:42.970 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+14:01:42.970 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+14:01:43.008 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+14:01:43.026 [restartedMain] INFO  HikariDataSource - HikariPool-3 - Starting...
+14:01:43.076 [restartedMain] INFO  HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@1201efe3
+14:01:43.077 [restartedMain] INFO  HikariDataSource - HikariPool-3 - Start completed.
+14:01:46.243 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:01:47.672 [Thread-31] INFO  Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8081"]
+14:01:47.683 [Thread-31] INFO  HikariDataSource - HikariPool-3 - Shutdown initiated...
+14:01:47.688 [Thread-31] INFO  HikariDataSource - HikariPool-3 - Shutdown completed.
+14:01:49.746 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:01:49.746 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+14:01:49.747 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+14:01:49.850 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+14:01:49.894 [restartedMain] INFO  HikariDataSource - HikariPool-4 - Starting...
+14:01:49.968 [restartedMain] INFO  HikariPool - HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@2f4a8705
+14:01:49.969 [restartedMain] INFO  HikariDataSource - HikariPool-4 - Start completed.
+14:01:54.128 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:07:37.108 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-4 - Shutdown initiated...
+14:07:37.110 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-4 - Shutdown completed.
+14:07:41.413 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:07:41.414 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+14:07:41.414 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+14:07:41.451 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+14:07:41.478 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+14:07:41.612 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3eaa4b6f
+14:07:41.613 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+14:07:45.772 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:11:08.046 [http-nio-8081-exec-3] INFO  [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:21:56.080 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+14:21:56.081 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+14:24:52.960 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+14:24:52.961 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+14:24:52.962 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+14:24:53.000 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+14:24:53.026 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+14:24:53.180 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@d04dfa6
+14:24:53.181 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+14:24:55.665 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+14:25:17.763 [http-nio-8081-exec-6] INFO  [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+14:32:54.583 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+14:32:54.588 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+15:03:55.474 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:03:55.476 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+15:03:55.476 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+15:03:55.518 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+15:03:55.555 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+15:03:55.698 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@465dd74
+15:03:55.699 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+15:03:59.610 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+15:04:17.818 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:04:17.820 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+15:05:18.702 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:05:18.704 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+15:05:18.705 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+15:05:18.782 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+15:05:18.826 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+15:05:19.019 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6ba1bd1b
+15:05:19.022 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+15:05:22.795 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+15:06:15.302 [http-nio-8081-exec-5] INFO  [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:08:57.947 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown initiated...
+15:08:57.950 [SpringApplicationShutdownHook] INFO  HikariDataSource - HikariPool-1 - Shutdown completed.
+15:13:00.802 [restartedMain] INFO  Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+15:13:00.804 [restartedMain] INFO  StandardService - Starting service [Tomcat]
+15:13:00.805 [restartedMain] INFO  StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+15:13:00.854 [restartedMain] INFO  [/] - Initializing Spring embedded WebApplicationContext
+15:13:00.893 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Starting...
+15:13:01.045 [restartedMain] INFO  HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6daa11d0
+15:13:01.046 [restartedMain] INFO  HikariDataSource - HikariPool-1 - Start completed.
+15:13:05.027 [restartedMain] INFO  Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+15:13:32.783 [http-nio-8081-exec-7] INFO  [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
