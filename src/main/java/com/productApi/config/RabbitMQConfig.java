@@ -2,19 +2,17 @@ package com.productApi.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class RabbitMQConfig {
 
-    public static final String PRODUCT_QUEUE_TO_SEND = "productToSendQueue";
-    public static final String PRODUCT_QUEUE = "orderProductQueue";
-
+    @Bean
+    public Queue productsIdQueue() {
+        return new Queue("productsIdQueue", false);
+    }
     @Bean
     public Queue productToSendQueue() {
-        return new Queue(PRODUCT_QUEUE_TO_SEND, false);
-    }
-
-    @Bean
-    public Queue productQueue() {
-        return new Queue(PRODUCT_QUEUE, false);
+        return new Queue("productToSendQueue", false);
     }
 }

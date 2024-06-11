@@ -21,24 +21,21 @@ public class ProductConfig {
                     LocalDate.of(2023, Month.DECEMBER, 1),
                     "product1",
                     "details1",
-                    73253,
-                    "2"
+                    73253
             );
 
             Product product2 = new Product(
                     LocalDate.of(2023, Month.DECEMBER, 2),
                     "product2",
                     "details2",
-                    73253,
-                    "2"
+                    73253
             );
 
             Product product3 = new Product(
                     LocalDate.of(2023, Month.DECEMBER, 3),
                     "product3",
                     "details3",
-                    73253,
-                    "1"
+                    73253
             );
 
             // Save Clients into Database

@@ -25,7 +25,6 @@ public class Product {
     private String name;
     private String details;
     private int stock;
-    private String orderId;
 
     public Product() {
     }
@@ -33,13 +32,11 @@ public class Product {
     public Product(LocalDate creationDate,
                   String name,
                   String details,
-                  int stock,
-                  String orderId) {
+                  int stock) {
         this.creationDate= creationDate;
         this.name = name;
         this.details = details;
         this.stock = stock;
-        this.orderId = orderId;
     }
 
 
@@ -71,10 +68,6 @@ public class Product {
         this.stock = stock;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
     public String getName() {
         return name;
     }
@@ -85,10 +78,6 @@ public class Product {
 
     public int getStock() {
         return stock;
-    }
-
-    public String getOrderId() {
-        return orderId;
     }
 
     /*

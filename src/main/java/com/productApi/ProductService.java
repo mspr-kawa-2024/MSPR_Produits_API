@@ -64,15 +64,46 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    @RabbitListener(queues = "orderProductQueue")
-    public void handleOrderRequest(String orderId) throws JsonProcessingException {
+    @RabbitListener(queues = "productsIdQueue")
+    public void handleProductsRequest(String productsId) throws JsonProcessingException {
+        System.out.println(productsId);
 
-        Product product = productRepository.findByOrderId(orderId);
+        List<Long> productsByIds = extractProductsIds(productsId);
 
-        String productJson = objectMapper.writeValueAsString(product);
-        rabbitMQSender.sendProductToOrder(productJson);
+        String jsonResult = "";
 
+        int i ;
+        for (i=0 ; i<productsByIds.size() ; i++) {
+
+            Product product = productRepository.findById(productsByIds.get(i))
+                    .orElseThrow(() -> new IllegalStateException(
+                            "Product with id  does not exist"));
+            String productJson = objectMapper.writeValueAsString(product);
+            jsonResult += productJson;
+        }
+
+        /*
+        Product product = productRepository.findById(firstProduct)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Product with id " + firstProduct + " does not exist"));
+        */
+        //String productJson = objectMapper.writeValueAsString(product);
+        rabbitMQSender.sendProductToOrder(jsonResult);
     }
 
+    public static List<Long> extractProductsIds(String str) {
+        List<Long> numberList = new ArrayList<>();
+        String[] numbers = str.split(",");
+
+        for (String number : numbers) {
+            try {
+                numberList.add(Long.parseLong(number.trim()));
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur de format : " + e.getMessage());
+            }
+        }
+
+        return numberList;
+    }
 
 }
