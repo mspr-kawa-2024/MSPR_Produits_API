@@ -19,12 +19,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    //@Autowired
-    //private RabbitMQSender rabbitMQSender;
-
-    //@Autowired
-    //private RabbitMQReceiver rabbitMQReceiver;
-
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -61,20 +55,4 @@ public class ProductController {
         productService.deleteProduct(productId);
     }
 
-    /*
-    @GetMapping("/{clientId}/orders/{orderId}/products")
-    public ResponseEntity<?> getCustomerOrderProducts(@PathVariable Long clientId, @PathVariable Long orderId) {
-        String ids = clientId.toString() + "," + orderId.toString();
-        rabbitMQSender.sendClientIdAndOrderId(orderId.toString());
-
-        // Attendre la réception du message. Vous pouvez implémenter un mécanisme d'attente ou de délai ici.
-        try {
-            Thread.sleep(1000); // Attendre 1 seconde pour que le message soit reçu. Ajustez selon vos besoins.
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        String commandOfClient = rabbitMQReceiver.getReceivedMessage();
-        return ResponseEntity.ok(commandOfClient);
-    }*/
 }

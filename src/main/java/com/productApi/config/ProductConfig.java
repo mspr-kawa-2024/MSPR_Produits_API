@@ -1,5 +1,7 @@
-package com.productApi;
+package com.productApi.config;
 
+import com.productApi.Product;
+import com.productApi.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

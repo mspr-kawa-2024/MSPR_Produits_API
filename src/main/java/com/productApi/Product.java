@@ -79,20 +79,6 @@ public class Product {
     public int getStock() {
         return stock;
     }
-
-    /*
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", fristName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", creationDate=" + creationDate +
-                ", updateDate=" + updateDate +
-                '}';
-    }*/
 }
 
 

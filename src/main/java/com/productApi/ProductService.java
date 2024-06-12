@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.productApi.config.RabbitMQReceiver;
 import com.productApi.config.RabbitMQSender;
-import jakarta.transaction.Transactional;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,13 +80,6 @@ public class ProductService {
             String productJson = objectMapper.writeValueAsString(product);
             jsonResult += productJson;
         }
-
-        /*
-        Product product = productRepository.findById(firstProduct)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Product with id " + firstProduct + " does not exist"));
-        */
-        //String productJson = objectMapper.writeValueAsString(product);
         rabbitMQSender.sendProductToOrder(jsonResult);
     }
 
