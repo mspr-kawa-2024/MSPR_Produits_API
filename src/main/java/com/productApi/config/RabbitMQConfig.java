@@ -15,4 +15,13 @@ public class RabbitMQConfig {
     public Queue productToSendQueue() {
         return new Queue("productToSendQueue", false);
     }
+
+    @Bean
+    public Queue productIdsIdQueue() {
+        return new Queue("productIdsToProductQueue", false);
+    }
+    @Bean
+    public Queue responseProductIdsVerificationQueue() {
+        return new Queue("responseProductIdsVerificationQueue", false);
+    }
 }

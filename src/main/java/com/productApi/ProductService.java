@@ -98,4 +98,40 @@ public class ProductService {
         return numberList;
     }
 
+    @RabbitListener(queues = "productIdsToProductQueue")
+    public void verificationOfProductsToAddInOrder(String productIdsReceived) {
+        List<Long> ids = convertirEnLongs(productIdsReceived);
+
+        int i = 0;
+        Long idToSend = null;
+        for (Long id : ids) {
+            if (!productRepository.existsById(id)) {
+                i++;
+                idToSend = id;
+                break;
+            }
+        }
+        if (i>0) {
+            rabbitMQSender.sendResponseOfIdsVerification(idToSend.toString());
+        } else {
+            rabbitMQSender.sendResponseOfIdsVerification("ok");
+        }
+    }
+
+    private static List<Long> convertirEnLongs(String input) {
+        String[] elements = input.split(",");
+        List<Long> result = new ArrayList<>();
+
+        for (String element : elements) {
+            element = element.trim();
+            try {
+                result.add(Long.parseLong(element));
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur : '" + element + "' n'est pas un nombre valide.");
+                return new ArrayList<>();
+            }
+        }
+        return result;
+    }
+
 }

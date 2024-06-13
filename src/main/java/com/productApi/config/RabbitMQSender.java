@@ -13,4 +13,8 @@ public class RabbitMQSender {
     public void sendProductToOrder(String product) {
         rabbitTemplate.convertAndSend("productToSendQueue", product);
     }
+
+    public void sendResponseOfIdsVerification(String response) {
+        rabbitTemplate.convertAndSend("responseProductIdsVerificationQueue", response);
+    }
 }
