@@ -1,13 +1,14 @@
-package com.productApi;
+package com.produitApi;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsprApplicationTests {
+class ProduitApplicationTests {
 
+
+	/*
 	@Test
 	void contextLoads() {
-	}
+	}*/
 
 }

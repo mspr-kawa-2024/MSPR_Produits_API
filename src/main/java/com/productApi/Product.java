@@ -39,7 +39,6 @@ public class Product {
         this.stock = stock;
     }
 
-
     public Long getId() {
         return id;
     }
