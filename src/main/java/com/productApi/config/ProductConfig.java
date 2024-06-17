@@ -20,6 +20,7 @@ public class ProductConfig {
         // Have access to our repository
         return args -> {
             Product product1 = new Product(
+                    1L,
                     LocalDate.of(2023, Month.DECEMBER, 1),
                     "product1",
                     "details1",
@@ -27,6 +28,7 @@ public class ProductConfig {
             );
 
             Product product2 = new Product(
+                    2L,
                     LocalDate.of(2023, Month.DECEMBER, 2),
                     "product2",
                     "details2",
@@ -34,6 +36,7 @@ public class ProductConfig {
             );
 
             Product product3 = new Product(
+                    3L,
                     LocalDate.of(2023, Month.DECEMBER, 3),
                     "product3",
                     "details3",

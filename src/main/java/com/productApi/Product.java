@@ -39,6 +39,19 @@ public class Product {
         this.stock = stock;
     }
 
+    public Product(
+                   Long id,
+                   LocalDate creationDate,
+                   String name,
+                   String details,
+                   int stock) {
+        this.id = id;
+        this.creationDate= creationDate;
+        this.name = name;
+        this.details = details;
+        this.stock = stock;
+    }
+
     public Long getId() {
         return id;
     }
