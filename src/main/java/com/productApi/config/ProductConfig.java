@@ -20,7 +20,6 @@ public class ProductConfig {
         // Have access to our repository
         return args -> {
             Product product1 = new Product(
-                    1L,
                     LocalDate.of(2023, Month.DECEMBER, 1),
                     "product1",
                     "details1",
@@ -28,24 +27,57 @@ public class ProductConfig {
             );
 
             Product product2 = new Product(
-                    2L,
                     LocalDate.of(2023, Month.DECEMBER, 2),
                     "product2",
                     "details2",
-                    73253
+                    111
             );
 
             Product product3 = new Product(
-                    3L,
                     LocalDate.of(2023, Month.DECEMBER, 3),
                     "product3",
                     "details3",
+                    456
+            );
+
+            Product product4 = new Product(
+                    LocalDate.of(2023, Month.DECEMBER, 3),
+                    "product4",
+                    "details4",
                     73253
+            );
+
+            Product product5 = new Product(
+                    LocalDate.of(2023, Month.DECEMBER, 3),
+                    "product5",
+                    "details5",
+                    345
+            );
+
+            Product product6 = new Product(
+                    LocalDate.of(2023, Month.DECEMBER, 3),
+                    "product6",
+                    "details6",
+                    954
+            );
+
+            Product product7 = new Product(
+                    LocalDate.of(2023, Month.DECEMBER, 3),
+                    "product7",
+                    "details7",
+                    123
+            );
+
+            Product product8 = new Product(
+                    LocalDate.of(2023, Month.DECEMBER, 3),
+                    "product8",
+                    "details8",
+                    3434
             );
 
             // Save Clients into Database
             repository.saveAll(
-                    List.of(product1, product2, product3)
+                    List.of(product1, product2, product3, product4, product5, product6, product7, product8)
             );
         };
     }
