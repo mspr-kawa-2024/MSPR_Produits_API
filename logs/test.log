@@ -1,0 +1,72 @@
+21:00:49.087 [background-preinit] DEBUG logging - Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+21:00:49.091 [background-preinit] INFO  Version - HV000001: Hibernate Validator 8.0.1.Final
+21:00:49.095 [background-preinit] DEBUG ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+21:00:49.096 [background-preinit] DEBUG ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+21:00:49.096 [background-preinit] DEBUG ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+21:00:49.096 [background-preinit] DEBUG ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+21:00:49.102 [background-preinit] DEBUG TraversableResolvers - Found jakarta.persistence.Persistence on classpath containing 'getPersistenceUtil'. Assuming JPA 2 environment. Trying to instantiate JPA aware TraversableResolver
+21:00:49.102 [background-preinit] DEBUG TraversableResolvers - Instantiated JPA aware TraversableResolver of type org.hibernate.validator.internal.engine.resolver.JPATraversableResolver.
+21:00:49.124 [background-preinit] DEBUG ResourceBundleMessageInterpolator - Loaded expression factory via original TCCL
+21:00:49.129 [restartedMain] INFO  ProductApplication - Starting ProductApplication using Java 21.0.2 with PID 3028 (/Users/med/Desktop/EPSI/mspr2/MSPR_Produits_API/target/classes started by med in /Users/med/Desktop/EPSI/mspr2/MSPR_Produits_API)
+21:00:49.133 [restartedMain] DEBUG ProductApplication - Running with Spring Boot v3.2.4, Spring v6.1.5
+21:00:49.135 [restartedMain] INFO  ProductApplication - No active profile set, falling back to 1 default profile: "default"
+21:00:49.135 [restartedMain] DEBUG SpringApplication - Loading source class com.productApi.ProductApplication
+21:00:49.196 [restartedMain] DEBUG ChangeableUrls - Matching URLs for reloading : [file:/Users/med/Desktop/EPSI/mspr2/MSPR_Produits_API/target/classes/]
+21:00:49.197 [restartedMain] DEBUG DevToolsSettings - Included patterns for restart : []
+21:00:49.197 [restartedMain] DEBUG DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]
+21:00:49.197 [restartedMain] INFO  DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+21:00:49.198 [restartedMain] INFO  DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+21:00:49.211 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000252: Using org.hibernate.validator.internal.engine.DefaultPropertyNodeNameProvider as property node name provider.
+21:00:49.216 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000234: Using org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator as ValidatorFactory-scoped message interpolator.
+21:00:49.217 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000234: Using org.hibernate.validator.internal.engine.resolver.JPATraversableResolver as ValidatorFactory-scoped traversable resolver.
+21:00:49.217 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000234: Using org.hibernate.validator.internal.util.ExecutableParameterNameProvider as ValidatorFactory-scoped parameter name provider.
+21:00:49.217 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000234: Using org.hibernate.validator.internal.engine.DefaultClockProvider as ValidatorFactory-scoped clock provider.
+21:00:49.218 [background-preinit] DEBUG ValidatorFactoryConfigurationHelper - HV000234: Using org.hibernate.validator.internal.engine.scripting.DefaultScriptEvaluatorFactory as ValidatorFactory-scoped script evaluator factory.
+21:00:49.242 [restartedMain] INFO  DockerComposeLifecycleManager - Using Docker Compose file '/Users/med/Desktop/EPSI/mspr2/MSPR_Produits_API/compose.yaml'
+21:00:49.609 [restartedMain] DEBUG Restarter - Creating new Restarter for thread Thread[#1,main,5,main]
+21:00:49.612 [restartedMain] DEBUG Restarter - Immediately restarting application
+21:00:49.612 [restartedMain] DEBUG Restarter - Starting application com.productApi.ProductApplication with URLs [file:/Users/med/Desktop/EPSI/mspr2/MSPR_Produits_API/target/classes/]
+21:00:49.769 [restartedMain] ERROR SpringApplication - Application run failed
+org.springframework.boot.docker.compose.core.DockerNotRunningException: Docker is not running
+	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.getDockerCommand(DockerCli.java:146) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.<init>(DockerCli.java:129) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.core.DockerCli.lambda$new$0(DockerCli.java:65) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at java.base/java.util.HashMap.computeIfAbsent(HashMap.java:1228) ~[?:?]
+	at org.springframework.boot.docker.compose.core.DockerCli.<init>(DockerCli.java:64) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.core.DockerCompose.get(DockerCompose.java:92) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.lifecycle.DockerComposeLifecycleManager.getDockerCompose(DockerComposeLifecycleManager.java:154) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.lifecycle.DockerComposeLifecycleManager.start(DockerComposeLifecycleManager.java:110) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:53) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:35) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:138) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.context.event.EventPublishingRunListener.multicastInitialEvent(EventPublishingRunListener.java:136) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.context.event.EventPublishingRunListener.contextLoaded(EventPublishingRunListener.java:98) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$contextLoaded$4(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[?:?]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplicationRunListeners.contextLoaded(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:432) [spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:333) [spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) [spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) [spring-boot-3.2.4.jar:3.2.4]
+	at com.productApi.ProductApplication.main(ProductApplication.java:10) [classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.2.4.jar:3.2.4]
+Caused by: org.springframework.boot.docker.compose.core.ProcessExitException: 'docker version --format {{.Client.Version}}' failed with exit code 1.
+
+Stdout:
+25.0.3
+
+
+Stderr:
+Cannot connect to the Docker daemon at unix:///Users/med/.docker/run/docker.sock. Is the docker daemon running?
+
+	at org.springframework.boot.docker.compose.core.ProcessRunner.run(ProcessRunner.java:96) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.core.ProcessRunner.run(ProcessRunner.java:74) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.getDockerCommand(DockerCli.java:135) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
+	... 28 more
