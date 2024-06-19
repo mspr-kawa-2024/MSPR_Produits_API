@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 public class ProductRepositoryTest {
 
-    @Mock
+    @Autowired
     private ProductRepository productRepository;
 
     @BeforeEach
