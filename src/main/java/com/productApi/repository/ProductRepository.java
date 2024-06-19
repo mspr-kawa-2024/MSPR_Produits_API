@@ -1,5 +1,6 @@
-package com.productApi;
+package com.productApi.repository;
 
+import com.productApi.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,4 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findByName(String name);
-
-    Product findByOrderId(String orderId);
-
 }

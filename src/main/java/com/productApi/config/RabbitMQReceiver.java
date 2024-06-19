@@ -8,15 +8,18 @@ public class RabbitMQReceiver {
 
     private String receivedMessage;
 
-    @RabbitListener(queues = "orderProductQueue")
-    public void receiveMessage(String message) {
-        this.receivedMessage = message;
-        try {
-        } catch (NumberFormatException e) {
-        }
+    public String getReceivedMessage(String message) {
+        receivedMessage = message;
+        return receivedMessage;
     }
 
-    public String getReceivedMessage() {
-        return this.receivedMessage;
+    @RabbitListener(queues = "productToSendQueue")
+    public void receiveProductMessage(String message) {
+        this.receivedMessage = message;
+    }
+
+    @RabbitListener(queues = "responseProductIdsVerificationQueue")
+    public void receiveVerificationMessage(String message) {
+        this.receivedMessage = message;
     }
 }
