@@ -1,4 +1,4 @@
-package com.productApi;
+package com.productApi.model;
 
 import jakarta.persistence.*;
 
@@ -49,6 +49,12 @@ public class Product {
         this.creationDate= creationDate;
         this.name = name;
         this.details = details;
+        this.stock = stock;
+    }
+
+    public Product(Long id, String name, int stock) {
+        this.id = id;
+        this.name = name;
         this.stock = stock;
     }
 
