@@ -3,7 +3,7 @@ package com.productApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.productApi")
+@SpringBootApplication
 public class ProductApplication {
 
 	public static void main(String[] args) {

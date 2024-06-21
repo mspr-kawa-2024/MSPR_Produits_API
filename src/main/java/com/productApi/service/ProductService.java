@@ -2,6 +2,7 @@ package com.productApi.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.productApi.config.RabbitMQReceiver;
 import com.productApi.config.RabbitMQSender;
 import com.productApi.model.Product;
 import com.productApi.repository.ProductRepository;
@@ -9,28 +10,25 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProductService {
 
-    private RabbitMQSender rabbitMQSender;
+    @Autowired
+    RabbitMQSender rabbitMQSender;
+
+    @Autowired
+    RabbitMQReceiver rabbitMQReceiver;
+
+    @Autowired
     private ObjectMapper objectMapper;
+
     private final ProductRepository productRepository;
 
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-    }
-
-    public void setRabbitMQSender(RabbitMQSender rabbitMQSender) {
-        this.rabbitMQSender = rabbitMQSender;
-    }
-
-    public void setObjectMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
     }
 
     public List<Product> getProducts() {
@@ -53,7 +51,7 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException("Product with id " + productId + " does not exist"));
 
-        if (name != null && !name.isEmpty() && !name.equals(product.getName())) {
+        if (name != null && name.length() > 0 && !name.equals(product.getName())) {
             product.setName(name);
             productRepository.save(product);
         }
@@ -62,7 +60,7 @@ public class ProductService {
     public void deleteProduct(Long productId) {
         boolean exists = productRepository.existsById(productId);
         if (!exists) {
-            throw new IllegalStateException("Product with id " + productId + " does not exist");
+            throw new IllegalStateException( "Product with id " + productId + " does not exists");
         }
         productRepository.deleteById(productId);
     }
@@ -73,15 +71,18 @@ public class ProductService {
 
         List<Long> productsByIds = extractProductsIds(productsId);
 
-        StringBuilder jsonResult = new StringBuilder();
+        String jsonResult = "";
 
-        for (Long productId : productsByIds) {
-            Product product = productRepository.findById(productId)
-                    .orElseThrow(() -> new IllegalStateException("Product with id " + productId + " does not exist"));
+        int i ;
+        for (i=0 ; i<productsByIds.size() ; i++) {
+
+            Product product = productRepository.findById(productsByIds.get(i))
+                    .orElseThrow(() -> new IllegalStateException(
+                            "Product with id  does not exist"));
             String productJson = objectMapper.writeValueAsString(product);
-            jsonResult.append(productJson);
+            jsonResult += productJson;
         }
-        rabbitMQSender.sendProductToOrder(jsonResult.toString());
+        rabbitMQSender.sendProductToOrder(jsonResult);
     }
 
     public static List<Long> extractProductsIds(String str) {
@@ -103,32 +104,36 @@ public class ProductService {
     public void verificationOfProductsToAddInOrder(String productIdsReceived) {
         List<Long> ids = convertirEnLongs(productIdsReceived);
 
+        int i = 0;
         Long idToSend = null;
         for (Long id : ids) {
             if (!productRepository.existsById(id)) {
+                i++;
                 idToSend = id;
                 break;
             }
         }
-        if (idToSend != null) {
+        if (i>0) {
             rabbitMQSender.sendResponseOfIdsVerification(idToSend.toString());
         } else {
             rabbitMQSender.sendResponseOfIdsVerification("ok");
         }
     }
-        private static List<Long> convertirEnLongs(String input) {
-            String[] elements = input.split(",");
-            List<Long> result = new ArrayList<>();
 
-            for (String element : elements) {
-                element = element.trim();
-                try {
-                    result.add(Long.parseLong(element));
-                } catch (NumberFormatException e) {
-                    System.out.println("Erreur : '" + element + "' n'est pas un nombre valide.");
-                    return new ArrayList<>();
-                }
+    private static List<Long> convertirEnLongs(String input) {
+        String[] elements = input.split(",");
+        List<Long> result = new ArrayList<>();
+
+        for (String element : elements) {
+            element = element.trim();
+            try {
+                result.add(Long.parseLong(element));
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur : '" + element + "' n'est pas un nombre valide.");
+                return new ArrayList<>();
             }
-            return result;
         }
+        return result;
     }
+
+}
