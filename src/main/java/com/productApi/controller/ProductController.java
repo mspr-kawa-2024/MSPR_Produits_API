@@ -31,8 +31,8 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    @GetMapping("/{ProductId}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable("productId") Long productId) {
         Product product = productService.getProductById(productId);
         if (product != null) {
             return ResponseEntity.ok(product);
@@ -40,6 +40,7 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
 
     @PostMapping
     public void registerNewProduct(@RequestBody Product product) {

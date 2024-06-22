@@ -2,7 +2,6 @@ package com.productApi.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.productApi.config.RabbitMQReceiver;
 import com.productApi.config.RabbitMQSender;
 import com.productApi.model.Product;
 import com.productApi.repository.ProductRepository;
@@ -17,9 +16,6 @@ public class ProductService {
 
     @Autowired
     RabbitMQSender rabbitMQSender;
-
-    @Autowired
-    RabbitMQReceiver rabbitMQReceiver;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -37,6 +33,10 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
+    }
+
+    public Optional<Product> findByName(String name) {
+        return productRepository.findByName(name);
     }
 
     public void addNewProduct(Product product) {
