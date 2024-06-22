@@ -127,5 +127,83 @@ public class ProductServiceTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void testAddNewProduct_NameTaken() {
+        Product existingProduct = new Product(1L, LocalDate.now(), "Existing Product", "Description", 25);
+
+        when(productRepository.findByName(existingProduct.getName())).thenReturn(Optional.of(existingProduct));
+
+        Product newProduct = new Product(null, LocalDate.now(), "Existing Product", "Description", 30);
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            productService.addNewProduct(newProduct);
+        });
+
+        assertEquals("name taken", exception.getMessage());
+
+        verify(productRepository, never()).save(any());
+    }
+
+    @Test
+    public void testUpdateProductWithNameChange() {
+        Long productId = 1L;
+        String newName = "Updated Product";
+        Product existingProduct = new Product(productId, LocalDate.now(), "Old Product", "Description", 30);
+
+        when(productRepository.findById(productId)).thenReturn(Optional.of(existingProduct));
+
+        productService.updateProduct(productId, newName);
+
+        assertEquals(newName, existingProduct.getName());
+        verify(productRepository, times(1)).save(existingProduct);
+    }
+
+    @Test
+    public void testUpdateProductWithNoNameChange() {
+        Long productId = 1L;
+        String existingName = "Old Product";
+        Product existingProduct = new Product(productId, LocalDate.now(), existingName, "Description", 30);
+
+        when(productRepository.findById(productId)).thenReturn(Optional.of(existingProduct));
+
+        productService.updateProduct(productId, existingName);
+
+        assertEquals(existingName, existingProduct.getName());
+        verify(productRepository, never()).save(existingProduct);
+    }
+
+    @Test
+    public void testExtractProductsIds() {
+        String input = "1,2,3,5";
+
+        List<Long> expected = List.of(1L, 2L, 3L, 5L);
+        List<Long> result = ProductService.extractProductsIds(input);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void testConvertirEnLongs_InvalidInput() {
+        String input = "1,2,3,invalid,5";
+
+        List<Long> result = ProductService.convertirEnLongs(input);
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testVerificationOfProductsToAddInOrder() {
+        String productIdsReceived = "1,2,3";
+        when(productRepository.existsById(1L)).thenReturn(true);
+        when(productRepository.existsById(2L)).thenReturn(false);
+        when(productRepository.existsById(3L)).thenReturn(true);
+
+        String result = productService.processVerificationOfProducts(productIdsReceived);
+
+        assertEquals("2", result);
+    }
+
+
 }
 

@@ -102,8 +102,12 @@ public class ProductService {
 
     @RabbitListener(queues = "productIdsToProductQueue")
     public void verificationOfProductsToAddInOrder(String productIdsReceived) {
-        List<Long> ids = convertirEnLongs(productIdsReceived);
+        String response = processVerificationOfProducts(productIdsReceived);
+        rabbitMQSender.sendResponseOfIdsVerification(response);
+    }
 
+    public String processVerificationOfProducts(String productIdsReceived) {
+        List<Long> ids = convertirEnLongs(productIdsReceived);
         int i = 0;
         Long idToSend = null;
         for (Long id : ids) {
@@ -113,12 +117,13 @@ public class ProductService {
                 break;
             }
         }
-        if (i>0) {
-            rabbitMQSender.sendResponseOfIdsVerification(idToSend.toString());
+        if (i > 0) {
+            return idToSend.toString();
         } else {
-            rabbitMQSender.sendResponseOfIdsVerification("ok");
+            return "ok";
         }
     }
+
 
     public static List<Long> convertirEnLongs(String input) {
         String[] elements = input.split(",");
