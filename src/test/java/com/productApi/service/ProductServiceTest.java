@@ -1,5 +1,6 @@
 package com.productApi.service;
 
+import com.productApi.config.RabbitMQSender;
 import com.productApi.model.Product;
 import com.productApi.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,9 @@ public class ProductServiceTest {
 
     @InjectMocks
     private ProductService productService;
+
+    @Mock
+    private RabbitMQSender rabbitMQSender;
 
     @BeforeEach
     public void setUp() {
@@ -107,4 +112,20 @@ public class ProductServiceTest {
 
         verify(productRepository, times(1)).deleteById(productId);
     }
+
+    @Test
+    public void testConvertirEnLongs() {
+        String input = "1,2,3,5";
+
+        List<Long> expected = new ArrayList<>();
+        expected.add(1L);
+        expected.add(2L);
+        expected.add(3L);
+        expected.add(5L);
+
+        List<Long> result = ProductService.convertirEnLongs(input);
+
+        assertEquals(expected, result);
+    }
 }
+

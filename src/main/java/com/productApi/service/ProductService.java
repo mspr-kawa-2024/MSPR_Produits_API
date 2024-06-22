@@ -120,7 +120,7 @@ public class ProductService {
         }
     }
 
-    private static List<Long> convertirEnLongs(String input) {
+    public static List<Long> convertirEnLongs(String input) {
         String[] elements = input.split(",");
         List<Long> result = new ArrayList<>();
 
