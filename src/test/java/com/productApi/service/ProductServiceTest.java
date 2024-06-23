@@ -1,5 +1,8 @@
 package com.productApi.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.productApi.config.RabbitMQSender;
 import com.productApi.model.Product;
 import com.productApi.repository.ProductRepository;
@@ -23,15 +26,20 @@ public class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
 
-    @InjectMocks
-    private ProductService productService;
+    @Mock
+    private ObjectMapper objectMapper;
 
     @Mock
     private RabbitMQSender rabbitMQSender;
 
+    @InjectMocks
+    private ProductService productService;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     @Test
@@ -204,6 +212,4 @@ public class ProductServiceTest {
         assertEquals("2", result);
     }
 
-
 }
-
