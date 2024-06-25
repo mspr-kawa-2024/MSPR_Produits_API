@@ -17,6 +17,11 @@ import java.util.List;
                     RequestMethod.POST,
                     RequestMethod.PUT,
                     RequestMethod.DELETE})
+
+/**
+ * Contrôleur REST pour la gestion des produits dans l'API des produits.
+ * Fournit des points de terminaison pour créer, lire, mettre à jour et supprimer des produits.
+ */
 public class ProductController {
 
     private final ProductService productService;

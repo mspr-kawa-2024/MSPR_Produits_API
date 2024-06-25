@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+
+/**
+ * Représente un produit dans l'API des produits.
+ * Cette classe est une entité JPA qui sera mappée à une table de base de données.
+ */
+
 //for hibernate
 @Entity
 //for database

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * Service pour gérer les opérations CRUD sur les produits et les interactions RabbitMQ.
+ */
 @Service
 public class ProductService {
 
